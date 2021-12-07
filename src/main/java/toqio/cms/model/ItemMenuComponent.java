@@ -15,8 +15,6 @@ import java.util.List;
 public class ItemMenuComponent {
     @Id
     private String id;
-    @Indexed
-    private BigInteger ordinalNumber;
     private String text;
     private String icon;
     private String to;
