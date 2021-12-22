@@ -2,11 +2,11 @@ package toqio.cms.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import toqio.cms.controller.DashboardController;
 import toqio.cms.model.DashboardComponent;
-import toqio.cms.repository.DashboardRepository;
+import toqio.cms.model.DashboardComponents;
+import toqio.cms.repository.DashboardComponentsRepository;
+import toqio.cms.repository.DashboardOptionsRepository;
 
 import java.util.List;
 
@@ -14,15 +14,21 @@ import java.util.List;
 @Service
 public class DashboardService {
     @Autowired
-    DashboardRepository dashboardRepository;
+    DashboardComponentsRepository dashboardRepository;
+    @Autowired
+    DashboardOptionsRepository dashboardOptionsRepository;
 
 
-    public List<DashboardComponent> getDashboard() {
+    public List<DashboardComponents> getDashboard() {
         return dashboardRepository.findAll();
     }
 
-    public void saveDashboardComponents(List<DashboardComponent> dashboardComponents) {
+    public void saveDashboardComponents(List<DashboardComponents> dashboardComponents) {
         dashboardRepository.deleteAll();
         dashboardRepository.saveAll(dashboardComponents);
+    }
+
+    public List<DashboardComponent> getDashboardOptions() {
+        return dashboardOptionsRepository.findAll();
     }
 }
